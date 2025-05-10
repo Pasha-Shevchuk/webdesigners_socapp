@@ -51,24 +51,35 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    // public function store(PostCreateRequest $request)
+    // {
+    //     $data = $request->validated();
+
+    //     // $image = $data['image'];
+    //     // unset($data['image']);
+    //     $data['user_id'] = Auth::id();
+
+    //     // $imagePath = $image->store('posts', 'public');
+    //     // $data['image'] = $imagePath;
+
+    //     $post = Post::create($data);
+
+    //     $post->addMediaFromRequest('image')
+    //         ->toMediaCollection();
+
+    //     return redirect()->route('dashboard');
+    // }
+
     public function store(PostCreateRequest $request)
     {
         $data = $request->validated();
-
-        // $image = $data['image'];
-        // unset($data['image']);
         $data['user_id'] = Auth::id();
-
-        // $imagePath = $image->store('posts', 'public');
-        // $data['image'] = $imagePath;
 
         $post = Post::create($data);
 
-        $post->addMediaFromRequest('image')
-            ->toMediaCollection();
-
         return redirect()->route('dashboard');
     }
+
 
     /**
      * Display the specified resource.

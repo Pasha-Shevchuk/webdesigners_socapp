@@ -18,7 +18,7 @@ class Post extends Model implements HasMedia
     use HasSlug;
 
     protected $fillable = [
-        // 'image',
+        'image',
         'title',
         'slug',
         'content',
@@ -37,7 +37,7 @@ class Post extends Model implements HasMedia
             ->addMediaConversion('large')
             ->width(1200);
     }
-    
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('default')
@@ -76,16 +76,18 @@ class Post extends Model implements HasMedia
 
         return max(1, $minutes);
     }
-    
+
     public function imageUrl($conversionName = '')
     {
-        $media = $this->getFirstMedia();
-        if (!$media) {
-            return null;
-        }
-        if ($media->hasGeneratedConversion($conversionName)) {
-            return $media->getUrl($conversionName);
-        }
-        return $media->getUrl();
+        // $media = $this->getFirstMedia();
+        // if (!$media) {
+        //     return null;
+        // }
+        // if ($media->hasGeneratedConversion($conversionName)) {
+        //     return $media->getUrl($conversionName);
+        // }
+        // return $media->getUrl();
+
+         return $this->image;
     }
 }

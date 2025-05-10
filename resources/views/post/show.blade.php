@@ -13,10 +13,10 @@
                             <a href="{{ route('profile.show', $post->user) }}" class="hover:underline">
                                 {{ $post->user->name }}
                             </a>
-                            
+
                             @auth
                                 &middot;
-                                <button x-text="following ? 'Unfollow' : 'Follow'" 
+                                <button x-text="following ? 'Unfollow' : 'Follow'"
                                 :class="following ? 'text-red-600' : 'text-emerald-600'"
                                 @click="follow()">
                                 </button>
@@ -54,7 +54,11 @@
 
                 <!-- Content Section -->
                 <div class="mt-8">
-                    <img src="{{ $post->imageUrl() }}" alt="{{ $post->title }}" class="w-full">
+                  @if ($post->image)
+                    <img src="{{ $post->image }}" alt="{{ $post->title }}" class="w-full">
+                @endif
+
+
 
                     <div class="mt-4">
                         {{ $post->content }}

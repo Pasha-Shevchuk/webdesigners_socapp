@@ -13,11 +13,11 @@
         </div>
         <div class="text-sm text-gray-400 flex gap-4">
             <div class="">
-                by 
+                by
                 <a href="{{ route('profile.show', $post->user->username) }}" class="text-gray-600 hover:underline">
-                    {{ $post->user->username }} 
+                    {{ $post->user->username }}
                 </a>
-                at 
+                at
                 {{ $post->created_at->format('M d, Y') }}
             </div>
             <span class="inline-flex gap-1 items-center">
@@ -34,7 +34,7 @@
             'username' => $post->user->username,
             'post' => $post->slug
         ]) }}">
-        <img class="w-48 h-full max-h-64 object-cover rounded-r-lg" 
+        <img class="w-48 h-full max-h-64 object-cover rounded-r-lg"
         src="{{ $post->imageUrl() }}" alt="" />
     </a>
 </div>
