@@ -3,12 +3,13 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
-                <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        DesignerAPP
-                    </a>
-                </div>
+              <!-- Logo -->
+            <div class="shrink-0 flex items-center space-x-2">
+                <a href="{{ route('dashboard') }}" class="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:text-gray-900">
+                    InspireMe
+                </a>
+            </div>
+
 
             </div>
 

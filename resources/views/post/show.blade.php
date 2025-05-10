@@ -57,9 +57,6 @@
                   @if ($post->image)
                     <img src="{{ $post->image }}" alt="{{ $post->title }}" class="w-full">
                 @endif
-
-
-
                     <div class="mt-4">
                         {{ $post->content }}
                     </div>
