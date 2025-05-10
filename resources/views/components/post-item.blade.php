@@ -14,7 +14,7 @@
         <div class="text-sm text-gray-400 flex gap-4">
             <div class="">
                 by
-                <a href="{{ route('profile.show', $post->user->username) }}" class="text-gray-600 hover:underline">
+                <a href="#" class="text-gray-600 hover:underline">
                     {{ $post->user->username }}
                 </a>
                 at

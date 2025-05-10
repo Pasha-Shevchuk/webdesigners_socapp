@@ -109,22 +109,31 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(PostUpdateRequest $request, Post $post)
-    {
-        if ($post->user_id !== Auth::id()) {
-            abort(403);
-        }
-        $data = $request->validated();
-
-        $post->update($data);
-
-        if ($data['image'] ?? false) {
-            $post->addMediaFromRequest('image')
-                ->toMediaCollection();
-        }
-
-        return redirect()->route('myPosts');
+   public function update(PostUpdateRequest $request, Post $post)
+{
+    if ($post->user_id !== Auth::id()) {
+        abort(403);
     }
+
+    $data = $request->validated();
+
+    // Якщо в тебе є поле "image" в таблиці posts
+    $post->update([
+        'title' => $data['title'],
+        'content' => $data['content'],
+        'category_id' => $data['category_id'],
+        'published_at' => $data['published_at'],
+        'image' => $data['image'], // Просто зберігаєш URL
+    ]);
+
+    // Якщо колись буде файл - залишимо перевірку
+    if ($request->hasFile('image')) {
+        $post->addMediaFromRequest('image')->toMediaCollection();
+    }
+
+    return redirect()->route('myPosts');
+}
+
 
     /**
      * Remove the specified resource from storage.

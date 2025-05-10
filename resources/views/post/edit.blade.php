@@ -5,7 +5,7 @@
                 Update Post: <strong class="font-bold">{{ $post->title }}</strong>
             </h1>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-8">
-                <form action="{{  route('post.update', $post->id) }}" 
+                <form action="{{  route('post.update', $post->id) }}"
                 enctype="multipart/form-data" method="post">
 
                     @csrf
@@ -18,12 +18,13 @@
                     @endif
 
                     <!-- Image -->
-                    <div>
-                        <x-input-label for="image" :value="__('Image')" />
-                        <x-text-input id="image" class="block mt-1 w-full" type="file" name="image"
-                            :value="old('image')" autofocus />
+                    <div class="mt-4">
+                        <x-input-label for="image" :value="__('Image URL or Path')" />
+                        <x-text-input id="image" class="block mt-1 w-full" type="text" name="image"
+                            :value="old('image', $post->image)" autofocus />
                         <x-input-error :messages="$errors->get('image')" class="mt-2" />
                     </div>
+
 
                     <!-- Title -->
                     <div class="mt-4">
@@ -39,7 +40,7 @@
                         <select id="category_id" name="category_id" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full">
                             <option value="">Select a Category</option>
                             @foreach ($categories as $category)
-                                <option value="{{ $category->id }}" 
+                                <option value="{{ $category->id }}"
                                         @selected(old('category_id', $post->category_id) == $category->id)>
                                     {{ $category->name }}
                                 </option>
@@ -55,7 +56,7 @@
                             >{{ old('content', $post->content) }}</x-input-textarea>
                         <x-input-error :messages="$errors->get('content')" class="mt-2" />
                     </div>
-                    
+
                     <!-- Published At -->
                     <div class="mt-4">
                         <x-input-label for="published_at" :value="__('Published At')" />
