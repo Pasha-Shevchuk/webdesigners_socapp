@@ -9,10 +9,6 @@
         </p>
     </header>
 
-    <form id="send-verification" method="post" action="{{ route('verification.send') }}">
-        @csrf
-    </form>
-
     <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
@@ -25,12 +21,12 @@
         @endif
 
         <!-- Image -->
-        <div>
+        <!-- <div>
             <x-input-label for="image" :value="__('Avatar')" />
             <x-text-input id="image" class="block mt-1 w-full" type="file" name="image"
                 :value="old('image')" autofocus />
             <x-input-error :messages="$errors->get('image')" class="mt-2" />
-        </div>
+        </div> -->
 
         <div>
             <x-input-label for="name" :value="__('Name')" />
@@ -49,7 +45,7 @@
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
-            @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
+            <!-- @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                 <div>
                     <p class="text-sm mt-2 text-gray-800">
                         {{ __('Your email address is unverified.') }}
@@ -65,7 +61,7 @@
                         </p>
                     @endif
                 </div>
-            @endif
+            @endif -->
         </div>
 
         <!-- Bio -->
