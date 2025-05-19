@@ -15,26 +15,26 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-   public function index()
-{
-    $query = Post::with(['user', 'media'])
-        ->withCount('claps')
-        ->latest();
+    public function index()
+    {
+        $query = Post::with(['user', 'media'])
+            ->withCount('claps')
+            ->latest();
 
-    // Якщо ХОЧЕШ обмежити постами тільки фоловінгів, раптом пізніше
-    /*
-    if ($user = auth()->user()) {
-        $ids = $user->following()->pluck('users.id');
-        $query->whereIn('user_id', $ids);
+        // Якщо ХОЧЕШ обмежити постами тільки фоловінгів, раптом пізніше
+        /*
+        if ($user = auth()->user()) {
+            $ids = $user->following()->pluck('users.id');
+            $query->whereIn('user_id', $ids);
+        }
+        */
+
+        $posts = $query->simplePaginate(5);
+
+        return view('post.index', [
+            'posts' => $posts,
+        ]);
     }
-    */
-
-    $posts = $query->simplePaginate(5);
-
-    return view('post.index', [
-        'posts' => $posts,
-    ]);
-}
 
     /**
      * Show the form for creating a new resource.
